@@ -1,18 +1,15 @@
-let questions = [];
+import Trivia from "./Trivia.js"
 
 async function fetchQuestions(){
     const data = await fetch("https://opentdb.com/api.php?amount=10")
     const res = await data.json()
-    questions = res.results
-    console.log(questions)
+    return res.results
 }
 
-function init(){
-    fetchQuestions()
+async function init(){
+    const questions = await fetchQuestions()
+    const trivia = new Trivia(questions)
+    trivia.createQuestion()
 }
 
 init()
-
-function nextQuestion(right, wrong){
-    
-}
