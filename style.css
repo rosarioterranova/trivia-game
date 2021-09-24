@@ -20,6 +20,13 @@ html, body{
     align-items: center;
 }
 
+#leaderboard{
+    border: white solid 2px;
+    border-style: dotted;
+    padding: 20px;
+    margin: 20px;
+}
+
 #question-display{
     display: flex;
     flex-direction: column;

@@ -64,9 +64,33 @@ export default class Trivia{
         }
 
         this.round++;
-        if(this.round == 10)
+        if(this.round == 10){
             alert("GameOver! Final Score: "+ this.points)
+            this.saveData()
+        }
         else
             this.createQuestion()
+    }
+
+    saveData(){
+        const name = prompt("Please enter your name", "My name");
+        let leaderboard = JSON.parse(localStorage.getItem('leaderboard'));
+        if(leaderboard != null){
+            leaderboard.push({
+                name: name,
+                points: this.points,
+                date: new Date().toLocaleDateString()
+            })
+        }
+        else{
+            leaderboard = [
+                {
+                    name: name,
+                    points: this.points,
+                    date: new Date().toLocaleDateString()
+                }
+            ]
+        }
+        localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
     }
 }
